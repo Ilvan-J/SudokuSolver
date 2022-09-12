@@ -133,6 +133,7 @@ function solverBoard() {
                 for (let numberToTry = 1; numberToTry <= 9; numberToTry++) {
                     if (isValidPlacement(numberToTry, row, column)) {
                         board[row][column] = numberToTry;
+                        
                         if (solverBoard()) {
                             return true;
                         } else {
