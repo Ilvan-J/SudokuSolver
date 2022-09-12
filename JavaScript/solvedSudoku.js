@@ -18,6 +18,7 @@ var row = null;
 var column = null;
 
 function creat_board() {
+    element.innerHTML = "";
     for (let i = 0; i < 9; i++) {
         let row;
         if((i + 1) % 3 == 0 && i + 1 != 9) {
@@ -49,7 +50,6 @@ function creat_numbers() {
 function setBoard(i, j) {
     row = i;
     column = j;
-    document.getElementById(row + "_" + column);
 }
 
 function number_click(i) {
@@ -114,8 +114,7 @@ function isNumberInBox(number, row, column) {
 function isValidPlacement(number, row, column) {
     return !isNumberInRow(number, row) && 
     !isNumberInColumn(number, column) && 
-    !isNumberInBox(number, row, column)
-    
+    !isNumberInBox(number, row, column);
 }
 
 function solverBoard() {
@@ -141,14 +140,23 @@ function solverBoard() {
 
 function solver() {
     if(solverBoard()) {
-        alert("Resolvido");
+        alert("Resolvido!");
         for (let i = 0; i < 9; i++) {
             for(let j = 0; j < 9; j++){
                 document.getElementById(i + "_" + j).innerHTML = board[i][j];
         }
     }
     } else {
-        alert("Deu ruim;")
+        alert("Deu ruim!");
+    }
+}
+
+function reiniciar() {
+    creat_board();
+    for(let i = 0; i < 9; i++){
+        for(let j = 0; j < 9; j++){
+            board[i][j] = 0;
+        }
     }
 }
 
