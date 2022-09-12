@@ -17,7 +17,8 @@
     height: 35px;
     background: #eaeaff  ;
     margin: 1px;
-    color: #1577ff
+    color: #1577ff;
+    cursor: pointer;
 }
 
 .Row1Col1:hover {
@@ -59,6 +60,7 @@
     width: 65px;
     height: 65px;
     color: white;
+    cursor: pointer;
 }
 
 .numberstyle:active  {
