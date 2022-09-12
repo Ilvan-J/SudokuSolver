@@ -5,7 +5,7 @@ const numbers = document.getElementById("numbers");
 var board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0], 
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -21,12 +21,12 @@ function creat_board() {
     element.innerHTML = "";
     for (let i = 0; i < 9; i++) {
         let row;
-        if((i + 1) % 3 == 0 && i + 1 != 9) {
+        if ((i + 1) % 3 == 0 && i + 1 != 9) {
             row = "border-bottom";
         }
         for (let j = 0; j < 9; j++) {
             let col;
-            if(j % 3 == 0 &&  j != 0) {
+            if (j % 3 == 0 && j != 0) {
                 col = "border-left";
             }
             element.innerHTML += `
@@ -53,34 +53,34 @@ function setBoard(i, j) {
 }
 
 function number_click(i) {
-    
-    if (row != null &&  column != null) {
+
+    if (row != null && column != null) {
         let text = "";
-        
+
         let boardRowCol = document.getElementById(row + "_" + column);
-        
-        if(board[row][column] == i) {
+
+        if (board[row][column] == i) {
             board[row][column] = 0;
             text = "";
             boardRowCol.classList.remove("Row1Col1-select");
-            
+
         } else {
             board[row][column] = i;
             text = i;
-           boardRowCol.classList.add("Row1Col1-select");
+            boardRowCol.classList.add("Row1Col1-select");
         }
-        
+
         boardRowCol.innerText = text;
 
         row = null;
         column = null;
     }
-    
+
 }
 
 function isNumberInRow(number, row) {
-    for(let i = 0; i < 9; i++){
-        if(board[row][i] == number) {
+    for (let i = 0; i < 9; i++) {
+        if (board[row][i] == number) {
             return true;
         }
     }
@@ -88,8 +88,8 @@ function isNumberInRow(number, row) {
 }
 
 function isNumberInColumn(number, column) {
-    for(let i = 0; i < 9; i++){
-        if(board[i][column] == number) {
+    for (let i = 0; i < 9; i++) {
+        if (board[i][column] == number) {
             return true;
         }
     }
@@ -99,32 +99,32 @@ function isNumberInColumn(number, column) {
 function isNumberInBox(number, row, column) {
     let localBoxRow = row - row % 3;
     let localBoxColumn = column - column % 3;
-    
-    for(let i = localBoxRow; i < localBoxRow + 3; i++){
-        for(let j = localBoxColumn; j < localBoxColumn + 3; j++){
-            if(board[i][j] == number) {
+
+    for (let i = localBoxRow; i < localBoxRow + 3; i++) {
+        for (let j = localBoxColumn; j < localBoxColumn + 3; j++) {
+            if (board[i][j] == number) {
                 return true;
             }
         }
     }
-    
+
     return false;
 }
 
 function isValidPlacement(number, row, column) {
-    return !isNumberInRow(number, row) && 
-    !isNumberInColumn(number, column) && 
-    !isNumberInBox(number, row, column);
+    return !isNumberInRow(number, row) &&
+        !isNumberInColumn(number, column) &&
+        !isNumberInBox(number, row, column);
 }
 
 function solverBoard() {
-    for(let row = 0; row < 9; row++){
-        for(let column = 0; column < 9; column++){
-            if(board[row][column] == 0) {
-                for(let numberToTry = 1; numberToTry <= 9; numberToTry++){
-                    if(isValidPlacement(numberToTry, row, column)) {
+    for (let row = 0; row < 9; row++) {
+        for (let column = 0; column < 9; column++) {
+            if (board[row][column] == 0) {
+                for (let numberToTry = 1; numberToTry <= 9; numberToTry++) {
+                    if (isValidPlacement(numberToTry, row, column)) {
                         board[row][column] = numberToTry;
-                        if(solverBoard()) {
+                        if (solverBoard()) {
                             return true;
                         } else {
                             board[row][column] = 0;
@@ -139,22 +139,25 @@ function solverBoard() {
 }
 
 function solver() {
-    if(solverBoard()) {
-        alert("Resolvido!");
+    let msg;
+    if (solverBoard()) {
         for (let i = 0; i < 9; i++) {
-            for(let j = 0; j < 9; j++){
+            for (let j = 0; j < 9; j++) {
                 document.getElementById(i + "_" + j).innerHTML = board[i][j];
+            }
+
         }
-    }
+        msg = "Resolvido!";
     } else {
-        alert("Deu ruim!");
+        msg ="Deu ruim!";
     }
+    alert(msg)
 }
 
 function reiniciar() {
     creat_board();
-    for(let i = 0; i < 9; i++){
-        for(let j = 0; j < 9; j++){
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
             board[i][j] = 0;
         }
     }
