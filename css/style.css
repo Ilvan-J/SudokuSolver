@@ -6,6 +6,7 @@
     background: gray;
     width: 338px;
     margin: 0 auto;
+    padding: 2px 1px;
 }
 
 .Row1Col1 {
@@ -16,6 +17,7 @@
     height: 35px;
     background: #eaeaff  ;
     margin: 1px;
+    color: #1577ff
 }
 
 .Row1Col1:hover {
@@ -56,6 +58,7 @@
     margin: 1px;
     width: 65px;
     height: 65px;
+    color: white;
 }
 
 .numberstyle:active  {
@@ -65,8 +68,9 @@
 .btn {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     margin: 10px auto;
+    width: 280px;
 }
 
 button {
@@ -75,4 +79,8 @@ button {
     border: none;
     color: white;
     border-radius: 2px;
+}
+
+#btn-reiniciar {
+    background: red;
 }
