@@ -63,8 +63,8 @@
     cursor: pointer;
 }
 
-.numberstyle:active  {
-    background: #4366c8;
+.numberstyle:active, .numberstyle:hover  {
+    filter: brightness(0.80);
 }
 
 .btn {
@@ -81,6 +81,11 @@ button {
     border: none;
     color: white;
     border-radius: 2px;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(0.85);
 }
 
 #btn-reiniciar {

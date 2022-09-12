@@ -50,6 +50,15 @@ function creat_numbers() {
 function setBoard(i, j) {
     row = i;
     column = j;
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            if (document.getElementById(i + "_" + j).classList.contains("Row1Col1-select") && board[i][j] == 0) {
+                document.getElementById(i + "_" + j).classList.remove("Row1Col1-select");
+            }
+        }
+    }
+
+    document.getElementById(i + "_" + j).classList.add("Row1Col1-select");
 }
 
 function number_click(i) {
